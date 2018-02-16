@@ -42,15 +42,9 @@ public class FiltroDeAuditoria implements Filter{
 	private String getUsuario(HttpServletRequest req) {
 		String usuario = "<deslogado>";
 		
-		Optional<HttpServletRequest> opRep = Optional.ofNullable(req);
-		Cookie[] cookies = opRep.map(HttpServletRequest::getCookies).orElse(new Cookie[0]);
+		Cookie cookie = new Cookies(req.getCookies()).buscaUsuarioLogado();
 		
-		for(Cookie cookie : cookies) {
-			if(cookie.getName().equals("usuario.logado")) {
-				usuario = cookie.getValue();
-			}
-		}
-		return usuario;
+		return cookie == null ? usuario : cookie.getValue();
 	}
 
 	@Override
