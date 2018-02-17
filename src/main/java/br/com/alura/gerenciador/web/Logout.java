@@ -3,6 +3,7 @@ package br.com.alura.gerenciador.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +19,9 @@ public class Logout extends HttpServlet {
 		
 		req.getSession().removeAttribute("usuario.logado");
 	
-		resp.sendRedirect("logout.html");
+		//cria um request dipatcher para redirecionar para a pagina html sem o cliente saber
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/paginas/logout.html");
+		dispatcher.forward(req, resp);
 	}
 
 }
