@@ -6,7 +6,7 @@ import javax.servlet.http.Cookie;
 
 public class Cookies {
 
-	private static final Object USUARIO_LOGADO = "usuario.logado";
+	private static final Object USUARIO_LOGADO = "usuarioLogado";
 	private Optional<Cookie[]> cookies;
 
 	public Cookies(Cookie[] cookies) {

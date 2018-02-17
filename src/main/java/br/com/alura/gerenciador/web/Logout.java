@@ -17,7 +17,7 @@ public class Logout extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		
-		req.getSession().removeAttribute("usuario.logado");
+		req.getSession().removeAttribute("usuarioLogado");
 	
 		//cria um request dipatcher para redirecionar para a pagina html sem o cliente saber
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/paginas/logout.html");

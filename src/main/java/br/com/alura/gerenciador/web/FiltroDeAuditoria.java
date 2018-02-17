@@ -43,7 +43,7 @@ public class FiltroDeAuditoria implements Filter{
 	 */
 	private String getUsuario(HttpServletRequest req) {
 		
-		Usuario usuario = (Usuario) req.getSession().getAttribute("usuario.logado");
+		Usuario usuario = (Usuario) req.getSession().getAttribute("usuarioLogado");
 		
 		Optional<Usuario> opUsuario = Optional.ofNullable(usuario);
 		
