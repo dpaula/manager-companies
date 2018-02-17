@@ -13,6 +13,8 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
+import br.com.alura.gerenciador.Usuario;
+
 @WebFilter(urlPatterns="/*")
 public class FiltroDeAuditoria implements Filter{
 
@@ -40,11 +42,12 @@ public class FiltroDeAuditoria implements Filter{
 	 * @return
 	 */
 	private String getUsuario(HttpServletRequest req) {
-		String usuario = "<deslogado>";
 		
-		Cookie cookie = new Cookies(req.getCookies()).buscaUsuarioLogado();
+		Usuario usuario = (Usuario) req.getSession().getAttribute("usuario.logado");
 		
-		return cookie == null ? usuario : cookie.getValue();
+		Optional<Usuario> opUsuario = Optional.ofNullable(usuario);
+		
+		return opUsuario.map(Usuario::getEmail).orElse("<deslogado>");
 	}
 
 	@Override
